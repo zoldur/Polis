@@ -7,6 +7,7 @@ COIN_DAEMON='/usr/local/bin/polisd'
 COIN_CLI='/usr/local/bin/polis-cli'
 COIN_REPO='https://github.com/polispay/polis/releases/download/v1.3.0/poliscore-1.3.0-x86_64-linux-gnu.tar.gz'
 SENTINEL_REPO='https://github.com/polispay/sentinel'
+COIN_BLOCK='https://github.com/zoldur/Polis/releases/download/v1.0.0.3/blocks.tar.gz'
 COIN_NAME='Polis'
 COIN_PORT=24126
 
@@ -30,6 +31,7 @@ function install_sentinel() {
   crontab $CONFIGFOLDER/$COIN_NAME.cron
   rm $CONFIGFOLDER/$COIN_NAME.cron >/dev/null 2>&1
   cd -
+  clear
 }
 
 
@@ -47,6 +49,24 @@ function compile_node() {
   cd - >/dev/null 2>&1
   rm -rf $TMP_FOLDER >/dev/null 2>&1
   clear
+}
+
+function download_blocks() {
+ echo -e "Syncing ${RED}$COIN_NAME${NC} block chain, it might take a while and the screen will not move."
+ cd $CONFIGFOLDER
+ wget -q $COIN_BLOCK
+ tar xvzf blocks.tar.gz >/dev/null 2>&1
+ rm blocks.tar.gz
+ cd -
+ clear
+}
+
+function sync_polis() {
+ while (( $($COIN_CLI mnsync status | jq .AssetID) != 999 )) ; do
+    echo "$COIN_NAME is still syncing."
+    sleep 30
+ done
+ clear
 }
 
 function configure_systemd() {
@@ -268,10 +288,13 @@ function setup_node() {
   create_config
   create_key
   update_config
+  download_blocks
   enable_firewall
   install_sentinel
-  important_information
   configure_systemd
+  sleep 10
+  sync_polis
+  important_information
 }
 
 
