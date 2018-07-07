@@ -1,11 +1,11 @@
 # Polis
 Shell script to install a [Polis Masternode](https://polispay.org/) on a Linux server running Ubuntu 16.04.  
-This script will install **Polis 1.3.0**.
+This script will install **Polis 1.3.1**.
 ***
 
 ## Installation:
 ```
-wget -q https://raw.githubusercontent.com/zoldur/Polis/master/polis_install.sh
+wget -N https://raw.githubusercontent.com/zoldur/Polis/master/polis_install.sh
 bash polis_install.sh
 ```
 ***
