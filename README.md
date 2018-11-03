@@ -1,6 +1,6 @@
 # Polis
 Shell script to install a [Polis Masternode](https://polispay.org/) on a Linux server running Ubuntu 16.04.  
-This script will install **Polis 1.3.1**.
+This script will install **Polis 1.4.6**.
 ***
 
 ## Installation:
@@ -67,7 +67,7 @@ SENTINEL_DEBUG=1 ./venv/bin/python bin/sentinel.py
 
 Any donation is highly appreciated.  
 
-**POLIS**:  PHoTmCiuWHc4NDn5kmGdt1VRhc1rrTrawq  
+**POLIS**: PLgkgEhsWKx8kku5BFPUbYJ5UrN6wMZW6o  
 **BTC**: 32tAw218fqnPY1zdgZTEquM71aPViGLqAQ  
 **ETH**: 0x39d10fe57611c564abc255ffd7e984dc97e9bd6d  
 **LTC**: LXrWbfeejNQRmRvtzB6Te8yns93Tu3evGf
