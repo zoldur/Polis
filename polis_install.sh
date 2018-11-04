@@ -298,8 +298,8 @@ function setup_node() {
 
 ##### Main #####
 clear
-
 checks
+update_node
 prepare_system
 compile_node
 setup_node
