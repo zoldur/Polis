@@ -21,6 +21,9 @@ NC='\033[0m'
 
 function update_node() {
   echo -e "Checking if ${RED}$COIN_NAME is already installed and running the lastest version.${NC}"
+  systemctl daemon-reload
+  sleep 3
+  systemctl start $COIN_NAME.service >/dev/null 2>&1
   apt -y install jq >/dev/null 2>&1
   VERSION=$($COIN_PATH$COIN_CLI getinfo 2>/dev/null| jq .version)
   if [[ "$VERSION" -eq "$LATEST_VERSION" ]]
