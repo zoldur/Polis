@@ -27,6 +27,9 @@ function update_node() {
   then
     echo -e "${RED}$COIN_NAME is already installed and running the lastest version.${NC}"
     exit 0
+  elif [[ -z "$VERSION" ]]
+  then
+    echo "Continue with the normal installation"
   elif [[ "$VERSION" -ne "$LATEST_VERSION" ]]
   then
     systemctl stop $COIN_NAME.service >/dev/null 2>&1
@@ -37,8 +40,6 @@ function update_node() {
     configure_systemd
     echo -e "${RED}$COIN_NAME updated to the latest version!${NC}"
     exit 0
-  else
-    echo "Continue with the normal installation"
   fi
 }
 
