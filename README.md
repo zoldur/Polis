@@ -1,6 +1,6 @@
 # Polis
 Shell script to install a [Polis Masternode](https://polispay.org/) on a Linux server running Ubuntu 16.04.  
-This script will install **Polis 1.4.6**.
+This script will install or update **Polis 1.4.6**.
 ***
 
 ## Installation:
@@ -53,11 +53,11 @@ systemctl is-enabled Polis #To check whetether Polis service is enabled on boot 
 
 ## Sentinel
 
-**Sentinel** is installed in **/sentinel** and added to **crontab** file.  
+**Sentinel** is installed in **/root/.poliscore/sentinel** and added to **crontab** file.  
 Sentinel log file is **/root/.poliscore/sentinel.log**  
 Test the config by running the following commands:
 ```
-cd /sentinel
+cd /root/.poliscore/sentinel
 ./venv/bin/py.test ./test
 SENTINEL_DEBUG=1 ./venv/bin/python bin/sentinel.py
 ```
