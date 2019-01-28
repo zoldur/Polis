@@ -1,6 +1,6 @@
 # Polis
 Shell script to install a [Polis Masternode](https://polispay.org/) on a Linux server running Ubuntu 16.04.  
-This script will install or update **Polis 1.4.6**.
+This script will install or update **Polis 1.4.8**.
 ***
 
 ## Installation:

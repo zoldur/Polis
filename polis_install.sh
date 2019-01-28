@@ -5,10 +5,10 @@ CONFIG_FILE='polis.conf'
 CONFIGFOLDER='/root/.poliscore'
 COIN_DAEMON='/usr/local/bin/polisd'
 COIN_CLI='/usr/local/bin/polis-cli'
-COIN_REPO='https://github.com/polispay/polis/releases/download/v1.4.6/poliscore-1.4.6-x86_64-linux-gnu.tar.gz'
+COIN_REPO='https://github.com/polispay/polis/releases/download/v1.4.8/poliscore-1.4.8-x86_64-linux-gnu.tar.gz'
 SENTINEL_REPO='https://github.com/polispay/sentinel'
-COIN_BLOCKS='https://github.com/zoldur/Polis/releases/download/v1.4.3/polisblocks.tgz'
-LATEST_VERSION=1040600
+COIN_BLOCKS='https://github.com/zoldur/Polis/releases/download/v1.4.8/polisblocks.tgz'
+LATEST_VERSION=1040800
 COIN_NAME='Polis'
 COIN_PORT=24126
 
@@ -23,8 +23,8 @@ NC='\033[0m'
 function sync_node() {
   echo -e "Syncing the node. This might take a while, depending on your internet connection!"
   cd $CONFIGFOLDER >/dev/null 2>&1
-  rm -r ./{blocks,chainstate,sporks,peers.dat,polisblocks.tgz} >/dev/null 2>&1
-  wget -q $COIN_BLOCKS
+  rm -r ./{blocks,chainstate,sporks,peers.dat,polisblocks.tgz,mncache.dat,mnpayments.dat} >/dev/null 2>&1
+  wget -N $COIN_BLOCKS
   tar xvzf polisblocks.tgz >/dev/null 2>&1
   rm polisblocks.tgz >/dev/null 2>&1
   cd - >/dev/null 2>&1
@@ -80,7 +80,7 @@ function compile_node() {
   COIN_ZIP=$(echo $COIN_REPO | awk -F'/' '{print $NF}')
   tar xvzf $COIN_ZIP --strip 1 >/dev/null 2>&1
   compile_error
-  cp bin/polis* /usr/local/bin
+  cp polis* /usr/local/bin
   compile_error
   strip $COIN_DAEMON $COIN_CLI
   cd - >/dev/null 2>&1
