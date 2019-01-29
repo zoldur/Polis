@@ -51,6 +51,7 @@ function update_node() {
     sleep 10 >/dev/null 2>&1
     rm $COIN_PATH$COIN_DAEMON $COIN_PATH$COIN_CLI >/dev/null 2>&1
     compile_node
+    sync_node
     configure_systemd
     echo -e "${RED}$COIN_NAME updated to the latest version!${NC}"
     exit 0
@@ -177,19 +178,23 @@ externalip=$NODEIP:$COIN_PORT
 masternodeprivkey=$COINKEY
 
 #Nodes
-addnode=polispay.org
-addnode=node1.polispay.org
-addnode=node2.polispay.org
-addnode=46.101.32.72:24126
-addnode=144.202.19.190:24126
-addnode=207.148.5.135:24126
-addnode=89.47.165.165:24126
-addnode=62.75.139.140:24126
-addnode=207.148.5.135:24126
-addnode=209.250.245.66:24126
-addnode=199.247.3.98:24126
-addnode=199.247.29.65:24126
-addnode=45.32.149.254:24126
+addnode=insight.polispay.org:24126
+addnode=explorer.polispay.org:24126
+addnode=104.238.154.100:24126
+addnode=107.191.57.97:24126
+addnode=107.173.29.198:24126
+addnode=172.245.90.219:24126
+addnode=209.250.254.52:24126
+addnode=95.179.176.241:24126
+addnode=95.179.177.232:24126
+addnode=95.179.145.247:24126
+addnode=66.42.37.214:24126
+addnode=104.238.154.100:24126
+addnode=107.191.57.97:24126
+addnode=108.61.199.39:24126
+addnode=172.245.90.219:24126
+addnode=144.202.59.4:24126
+addnode=95.179.135.220:24126
 EOF
 }
 
