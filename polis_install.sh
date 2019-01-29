@@ -25,7 +25,7 @@ function sync_node() {
   cd $CONFIGFOLDER >/dev/null 2>&1
   rm -r ./{blocks,chainstate,sporks,peers.dat,polisblocks.tgz,mncache.dat,mnpayments.dat} >/dev/null 2>&1
   wget -N $COIN_BLOCKS
-  tar xvzf polisbloc`ks.tgz >/dev/null 2>&1
+  tar xvzf polisblocks.tgz >/dev/null 2>&1
   rm polisblocks.tgz >/dev/null 2>&1
   cd - >/dev/null 2>&1
 }
