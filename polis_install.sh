@@ -5,10 +5,10 @@ CONFIG_FILE='polis.conf'
 CONFIGFOLDER='/root/.poliscore'
 COIN_DAEMON='/usr/local/bin/polisd'
 COIN_CLI='/usr/local/bin/polis-cli'
-COIN_REPO='https://github.com/polispay/polis/releases/download/v1.4.8.1/poliscore-1.4.8.1-x86_64-linux-gnu.tar.gz'
+COIN_REPO='https://github.com/polispay/polis/releases/download/v1.4.9/poliscore-1.4.9-x86_64-linux-gnu.tar.gz'
 SENTINEL_REPO='https://github.com/polispay/sentinel'
-COIN_BLOCKS='https://github.com/zoldur/Polis/releases/download/v1.4.8.1/polisblocks.tgz'
-LATEST_VERSION=1040801
+COIN_BLOCKS='http://explorer.polispay.org/images/bootstrap.dat'
+LATEST_VERSION=1040900
 COIN_NAME='Polis'
 COIN_PORT=24126
 
@@ -24,14 +24,12 @@ function sync_node() {
   echo -e "Syncing the node. This might take a while, depending on your internet connection!"
   cd $CONFIGFOLDER >/dev/null 2>&1
   rm -r ./{blocks,chainstate,sporks,peers.dat,polisblocks.tgz,mncache.dat,mnpayments.dat} >/dev/null 2>&1
-  wget -N $COIN_BLOCKS
-  tar xvzf polisblocks.tgz >/dev/null 2>&1
-  rm polisblocks.tgz >/dev/null 2>&1
+  wget -N $COIN_BLOCKS >/dev/null 2>&1
   cd - >/dev/null 2>&1
 }
 
 function update_node() {
-  echo -e "Checking if ${RED}$COIN_NAME is already installed and running the lastest version.${NC}"
+  echo -e "Checking if ${RED}$COIN_NAME${NC} is already installed and running the lastest version."
   systemctl daemon-reload
   sleep 3
   systemctl start $COIN_NAME.service >/dev/null 2>&1
@@ -39,7 +37,7 @@ function update_node() {
   VERSION=$($COIN_PATH$COIN_CLI getinfo 2>/dev/null| jq .version)
   if [[ "$VERSION" -eq "$LATEST_VERSION" ]]
   then
-    echo -e "${RED}$COIN_NAME is already installed and running the lastest version.${NC}"
+    echo -e "${RED}$COIN_NAME${NC} is already installed and running the lastest version."
     exit 0
   elif [[ -z "$VERSION" ]]
   then
@@ -53,7 +51,7 @@ function update_node() {
     compile_node
     sync_node
     configure_systemd
-    echo -e "${RED}$COIN_NAME updated to the latest version!${NC}"
+    echo -e "${RED}$COIN_NAME${NC} updated to the latest version!"
     exit 0
   fi
 }
